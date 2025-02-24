@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
-import { createPopper, type Instance } from "@popperjs/core";
+import { createPopper, type Instance, type Options } from "@popperjs/core";
 import Button from "./components/Button/Button.vue";
 import Collapse from "./components/Collapse/Collapse.vue";
 import Item from "./components/Collapse/CollapseItem.vue";
@@ -8,11 +8,14 @@ import Icon from "./components/Icon/Icon.vue";
 import Tooltip from './components/Tooltip/Tooltip.vue'
 import type { ButtonInstance } from "./components/Button/types";
 import Alert from "./components/Alert/Alert.vue";
+import type { TooltipInstance } from "./components/Tooltip/types";
 const overlayNode = ref<HTMLElement>();
 const triggerNode = ref<HTMLElement>();
-const trigger = ref<any>('click')
+const trigger = ref<any>('hover')
 let popperInstance: Instance | null = null
 const buttonref = ref<ButtonInstance | null>(null);
+const tooltipRef = ref<TooltipInstance | null>(null);
+const options:Partial<Options> = {placement:'right-end',strategy:'fixed'}
 // const openvalue = ref(["a", "b"]);
 const size = ref<
   | "3x"
@@ -32,6 +35,14 @@ const size = ref<
   | "9x"
   | "10x"
 >("3x");
+
+const open = () => {
+  // createMessage({ message: 'hello world', duration: 0, showClose: true })
+  tooltipRef.value?.show()
+}
+const close = () => {
+  tooltipRef.value?.hide()
+}
 onMounted(() => {
   if (buttonref.value) {
     console.log("buttonref", buttonref.value);
@@ -50,17 +61,20 @@ onMounted(() => {
 
 <template>
   <main>
-    <Tooltip :trigger="trigger">
-      <img alt="Vue logo" ref="triggerNode" class="logo" src="./assets/logo.svg" width="125" height="125" />
-      <template #content>fafadsf</template>
-    </Tooltip>
+    <header>
+      <Tooltip placement="right" content="hello" :trigger="trigger"  ref="tooltipRef" :open-delay="1000" :close-delay="1000">
+        <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+
+      </Tooltip>
+    </header>
+
 
 
     <!-- <Icon :icon="['fas', 'house']" type="primary" color="#0e7a0d" />
     <Icon :icon="['fas', 'house']" type="danger" :size="size" /> -->
 
-    <!-- <Button ref="buttonRef" @click="open">Test Button</Button>
-    <Button plain @click="close">Plain Button</Button> -->
+    <Button ref="buttonRef" @click="open">Test Button</Button>
+    <Button plain @click="close">Plain Button</Button>
     <!-- <Button round>Round Button</Button>
     <Button circle>VK</Button>
     <Button disabled>Disabled Button</Button><br /><br />
@@ -115,6 +129,25 @@ header {
 
 .logo {
   display: block;
-  margin: 0 auto 2rem;
+  border: 1px solid green;
+  margin: 0 auto;
+}
+
+.vk-tooltip__popper {
+  border: 1px solid red;
+}
+
+@media (min-width: 1024px) {
+  header {
+    display: flex;
+    place-items: center;
+    padding-right: calc(var(--section-gap) / 2);
+  }
+
+  header .wrapper {
+    display: flex;
+    place-items: flex-start;
+    flex-wrap: wrap;
+  }
 }
 </style>
