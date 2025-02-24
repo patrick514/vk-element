@@ -1,0 +1,88 @@
+body {
+  font-family: var(--vk-font-family); /* 使用自定义字体变量 */
+  font-weight: 400; /* 标准字体粗细 */
+  font-size: var(--vk-font-size-base); /* 基础字号 */
+  color: var(--vk-text-color-primary); /* 主要文本颜色 */
+  -webkit-font-smoothing: antialiased; /* Webkit 浏览器下字体平滑处理 */
+  -moz-osx-font-smoothing: grayscale; /* macOS Firefox 下字体平滑处理 */
+  -webkit-tap-highlight-color: transparent; /* 移动设备点击无高亮 */
+}
+
+a {
+  color: var(--vk-color-primary); /* 使用主题主色 */
+  text-decoration: none; /* 取消默认下划线 */
+
+  &:hover,
+  &:focus {
+    color: var(--vk-color-primary-light-3); /* 改变为较亮的主色 */
+  }
+
+  &:active {
+    color: var(--vk-color-primary-dark-2); /* 改变为较暗的主色 */
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--vk-text-color-regular); /* 使用常规文本颜色 */
+  font-weight: inherit;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+h1 {
+  font-size: calc(var(--vk-font-size-base) + 6px);
+}
+
+h2 {
+  font-size: calc(var(--vk-font-size-base) + 4px);
+}
+
+h3 {
+  font-size: calc(var(--vk-font-size-base) + 2px);
+}
+
+h4,
+h5,
+h6,
+p {
+  font-size: inherit;
+}
+
+p {
+  line-height: 1.8;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+sup,
+sub {
+  font-size: calc(var(--vk-font-size-base) - 1px);
+}
+
+small {
+  font-size: calc(var(--vk-font-size-base) - 2px);
+}
+
+hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 1px solid var(--vk-border-color-lighter);
+}
