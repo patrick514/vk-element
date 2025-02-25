@@ -1,21 +1,29 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { onMounted, ref ,h} from "vue";
 import { createPopper, type Instance, type Options } from "@popperjs/core";
 import Button from "./components/Button/Button.vue";
 import Collapse from "./components/Collapse/Collapse.vue";
 import Item from "./components/Collapse/CollapseItem.vue";
 import Icon from "./components/Icon/Icon.vue";
-import Tooltip from './components/Tooltip/Tooltip.vue'
+import Tooltip from "./components/Tooltip/Tooltip.vue";
 import type { ButtonInstance } from "./components/Button/types";
 import Alert from "./components/Alert/Alert.vue";
 import type { TooltipInstance } from "./components/Tooltip/types";
+import Dropdown from "./components/Dropdown/Dropdown.vue";
+import { MenuOptions } from "./components/Dropdown/types";
 const overlayNode = ref<HTMLElement>();
 const triggerNode = ref<HTMLElement>();
-const trigger = ref<any>('hover')
-let popperInstance: Instance | null = null
+const trigger = ref<any>("click");
+let popperInstance: Instance | null = null;
 const buttonref = ref<ButtonInstance | null>(null);
 const tooltipRef = ref<TooltipInstance | null>(null);
-const options:Partial<Options> = {placement:'right-end',strategy:'fixed'}
+const options: MenuOptions[] = [
+  { key: 1, label: h('b','this is bold') },
+  { key: 2, label: "item2", disabled: true },
+  { key: 3, label: "item3", divided: true },
+  { key: 4, label: "item4" },
+];
+// const options:Partial<Options> = {placement:'right-end',strategy:'fixed'}
 // const openvalue = ref(["a", "b"]);
 const size = ref<
   | "3x"
@@ -38,37 +46,40 @@ const size = ref<
 
 const open = () => {
   // createMessage({ message: 'hello world', duration: 0, showClose: true })
-  tooltipRef.value?.show()
-}
+  tooltipRef.value?.show();
+};
 const close = () => {
-  tooltipRef.value?.hide()
-}
+  tooltipRef.value?.hide();
+};
 onMounted(() => {
   if (buttonref.value) {
     console.log("buttonref", buttonref.value);
   }
   if (overlayNode.value && triggerNode.value) {
     popperInstance = createPopper(triggerNode.value, overlayNode.value, { placement: "right" });
-    console.log('pporer')
+    console.log("pporer");
   }
   setTimeout(() => {
     size.value = "2xl";
-    popperInstance?.setOptions({ placement: 'left' })
-
+    popperInstance?.setOptions({ placement: "left" });
   }, 2000);
 });
 </script>
 
 <template>
   <main>
-    <header>
+    <!-- <header>
       <Tooltip placement="right" content="hello" :trigger="trigger"  ref="tooltipRef" :open-delay="1000" :close-delay="1000">
         <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
 
       </Tooltip>
+    </header> -->
+
+    <header>
+      <Dropdown ref="tooltipRef" placement="bottom" :trigger="trigger" :menu-options="options">
+        <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+      </Dropdown>
     </header>
-
-
 
     <!-- <Icon :icon="['fas', 'house']" type="primary" color="#0e7a0d" />
     <Icon :icon="['fas', 'house']" type="danger" :size="size" /> -->
@@ -118,7 +129,6 @@ onMounted(() => {
         <div>this is cccc test</div>
       </Item>
     </Collapse>  -->
-
   </main>
 </template>
 
