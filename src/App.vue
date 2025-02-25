@@ -11,12 +11,15 @@ import Alert from "./components/Alert/Alert.vue";
 import type { TooltipInstance } from "./components/Tooltip/types";
 import Dropdown from "./components/Dropdown/Dropdown.vue";
 import { MenuOptions } from "./components/Dropdown/types";
+import Message from "./components/Message/Message.vue";
+import { createMessage } from "./components/Message/method";
 const overlayNode = ref<HTMLElement>();
 const triggerNode = ref<HTMLElement>();
 const trigger = ref<any>("click");
 let popperInstance: Instance | null = null;
 const buttonref = ref<ButtonInstance | null>(null);
 const tooltipRef = ref<TooltipInstance | null>(null);
+const cnt = ref(0)
 const options: MenuOptions[] = [
   { key: 1, label: h('b','this is bold') },
   { key: 2, label: "item2", disabled: true },
@@ -46,12 +49,18 @@ const size = ref<
 
 const open = () => {
   // createMessage({ message: 'hello world', duration: 0, showClose: true })
+  createMessage({message:`cnt:${cnt.value++}`,showClose:true,type:'danger'})
+
   tooltipRef.value?.show();
 };
 const close = () => {
   tooltipRef.value?.hide();
 };
 onMounted(() => {
+  createMessage({ message: 'hello world', duration: 0, showClose: true })
+  createMessage({ message: 'hello world again', duration: 0, type: 'success', showClose: true })
+  createMessage({ message: 'hello world three', duration: 0, type: 'danger', showClose: true })
+
   if (buttonref.value) {
     console.log("buttonref", buttonref.value);
   }
@@ -62,6 +71,7 @@ onMounted(() => {
   setTimeout(() => {
     size.value = "2xl";
     popperInstance?.setOptions({ placement: "left" });
+    // instance.destory()
   }, 2000);
 });
 </script>
@@ -74,7 +84,7 @@ onMounted(() => {
 
       </Tooltip>
     </header> -->
-
+    <!-- <Message show-close :duration="0">hello message</Message> -->
     <header>
       <Dropdown ref="tooltipRef" placement="bottom" :trigger="trigger" :menu-options="options">
         <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
