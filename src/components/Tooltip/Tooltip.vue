@@ -95,8 +95,12 @@ const togglePopper = () => {
     }
 }
 useClickOutside(popperContainerNode, () => {
+    //为什么select 没用，因为是manual
     if (props.trigger === 'click' && isOpen.value && !props.manual) {
         closeFinal()
+    }
+    if(isOpen.value){
+        emits('click-outside',true)
     }
 })
 const attachEvents = () => {
