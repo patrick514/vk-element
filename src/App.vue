@@ -13,9 +13,10 @@ import Dropdown from "./components/Dropdown/Dropdown.vue";
 import { MenuOptions } from "./components/Dropdown/types";
 import Message from "./components/Message/Message.vue";
 import { createMessage } from "./components/Message/method";
+import Input from "./components/Input/Input.vue";
 const overlayNode = ref<HTMLElement>();
 const triggerNode = ref<HTMLElement>();
-const trigger = ref<any>("click");
+const trigger = ref<any>("");
 let popperInstance: Instance | null = null;
 const buttonref = ref<ButtonInstance | null>(null);
 const tooltipRef = ref<TooltipInstance | null>(null);
@@ -90,6 +91,8 @@ onMounted(() => {
         <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
       </Dropdown>
     </header>
+
+      <Input v-model="trigger" placeholder="密码文本框，可以切换" showPassword/>
 
     <!-- <Icon :icon="['fas', 'house']" type="primary" color="#0e7a0d" />
     <Icon :icon="['fas', 'house']" type="danger" :size="size" /> -->
