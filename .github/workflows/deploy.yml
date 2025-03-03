@@ -21,10 +21,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
-          cache: 'npm' # 使用 npm 作为缓存
+          cache: 'npm'
 
       - name: Install dependencies
-        run: npm install # 使用 npm install
+        run: npm install
 
       - name: Build Site
         run: npm run docs:build
@@ -36,6 +36,7 @@ jobs:
           folder: docs/.vitepress/dist
           single-commit: true
           clean: true
+          ssh-key: ${{ secrets.DEPLOY_KEY }} # 添加部署密钥
 
 #      - name: Sync to Gitee
 #        uses: wearerequired/git-mirror-action@v1.2.0
