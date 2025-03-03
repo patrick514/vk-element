@@ -4,6 +4,7 @@ import { fileURLToPath, URL } from "node:url";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  base: "/vk-element/",
   title: "vk-element",
   description: "基于vue3的仿Element Plus的组件库",
   // srcDir: "components",
