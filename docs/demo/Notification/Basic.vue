@@ -1,11 +1,12 @@
 <template>
-  <vk-button plain @click="open1">Closes automatically</vk-button>
-  <vk-button plain @click="open2">Won't close automatically</vk-button>
+  <Button plain @click="open1">Closes automatically</Button>
+  <Button plain @click="open2">Won't close automatically</Button>
 </template>
 
 <script setup>
 import { h } from 'vue';
 import { createNotification } from '@/components/Notification';
+import Button from '@/components/Button/Button.vue'
 
 const open1 = () => {
   createNotification({

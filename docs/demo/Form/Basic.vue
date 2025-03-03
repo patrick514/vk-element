@@ -1,26 +1,26 @@
 
 <template>
-  <div>
-    <vk-form :model="model" ref="formRef">
-      <vk-form-item prop="email" label="the email">
-        <vk-input v-model="model.email" />
-      </vk-form-item>
-      <vk-form-item prop="password" label="the password">
-        <vk-input v-model="model.password" type="password" />
-      </vk-form-item>
-      <vk-form-item prop="agreement" label="agreement">
-        <vk-switch v-model="model.agreement" />
-      </vk-form-item>
-      <vk-form-item prop="zone" label="zone">
-        <vk-select v-model="model.zone" :options="options" />
-      </vk-form-item>
-      <vk-form-item>
-        <vk-button @click.prevent="submit" type="primary">Submit</vk-button>
-        <vk-button @click.prevent="reset">Reset</vk-button>
-      </vk-form-item>
-    </vk-form>
+  <div class="container">
+    <Form :model="model" ref="formRef">
+      <FormItem prop="email" label="the email">
+        <Input v-model="model.email" />
+      </FormItem>
+      <FormItem prop="password" label="the password">
+        <Input v-model="model.password" type="password" />
+      </FormItem>
+      <FormItem prop="agreement" label="agreement">
+        <Switch v-model="model.agreement" />
+      </FormItem>
+      <FormItem prop="zone" label="zone">
+        <Select v-model="model.zone" :options="options" />
+      </FormItem>
+      <FormItem>
+        <Button @click.prevent="submit" type="primary">Submit</Button>
+        <Button @click.prevent="reset">Reset</Button>
+      </FormItem>
+    </Form>
   
-    <p>
+    <p style="margin: 20px 25%; width: fit-content;">
       form value:
       <pre>{{model}}</pre>
     </p>
@@ -29,11 +29,15 @@
 
 <script setup>
 import { reactive, ref } from 'vue';
-
+import Form from "@/components/Form/Form.vue";
+import FormItem from "@/components/Form/FormItem.vue";
+import Button from "@/components/Button/Button.vue";
+import Input from "@/components/Input/Input.vue";
+import Switch from "@/components/Switch/Switch.vue";
+import Select from "@/components/Select/Select.vue";
 const model = reactive({
   email: '',
   password: '',
-  confirmPwd: '',
   agreement: false,
   zone: ''
 })
@@ -54,3 +58,6 @@ const reset = () => {
   formRef.value.resetFields()
 }
 </script>
+<style scoped>
+
+</style>

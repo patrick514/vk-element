@@ -24,7 +24,7 @@ description: Form 组件的文档
 
 <preview path="../demo/Form/Validate.vue" title="表单校验" description="Form 表单校验"></preview>
 
-# 自定义校验规则
+## 自定义校验规则
 
 这个例子中展示了如何使用自定义验证规则来完成密码的二次验证。
 

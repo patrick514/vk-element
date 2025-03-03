@@ -33,7 +33,7 @@ export default defineConfig({
         items: [{ text: "Button 按钮", link: "/components/button" }],
       },
       {
-        text: "Form 表单组件 还在做",
+        text: "Form 表单组件",
         items: [
           { text: "Input 输入框", link: "/components/input" },
           { text: "Select 选择器", link: "/components/select" },

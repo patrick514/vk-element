@@ -1,22 +1,23 @@
 <template>
   <div>
-    <vk-form :model="model" :rules="rules" ref="formRef">
-      <vk-form-item prop="email" label="the email">
-        <vk-input v-model="model.email" />
-      </vk-form-item>
-      <vk-form-item prop="password" label="the password">
-        <vk-input v-model="model.password" type="password" />
-      </vk-form-item>
-      <vk-form-item prop="confirmPwd" label="confirm password">
-        <vk-input v-model="model.confirmPwd" type="password" />
-      </vk-form-item>
-      <vk-form-item>
-        <vk-button @click.prevent="submit" type="primary">Submit</vk-button>
-        <vk-button @click.prevent="reset">Reset</vk-button>
-      </vk-form-item>
-    </vk-form>
+    <Form :model="model" :rules="rules" ref="formRef">
+      <FormItem prop="email" label="the email">
+        <Input v-model="model.email" />
+      </FormItem>
+      <FormItem prop="password" label="the password">
+        <Input v-model="model.password" type="password" />
+      </FormItem>
+      <FormItem prop="confirmPwd" label="confirm password">
+        <Input v-model="model.confirmPwd" type="password" />
+      </FormItem>
+      <FormItem>
+        <Button @click.prevent="submit" type="primary">Submit</Button>
+        <Button @click.prevent="reset">Reset</Button>
+      </FormItem>
+    </Form>
   
-    <p>
+        <p style="margin: 20px 25%; width: fit-content;">
+
       form value:
       <pre>{{model}}</pre>
     </p>
@@ -25,6 +26,10 @@
 
 <script setup>
 import { reactive, ref } from 'vue'
+import Form from "@/components/Form/Form.vue";
+import FormItem from "@/components/Form/FormItem.vue";
+import Button from "@/components/Button/Button.vue";
+import Input from "@/components/Input/Input.vue";
 
 const model = reactive({
   email: '',
@@ -44,6 +49,7 @@ const submit = async () => {
   try {
     await formRef.value.validate()
     console.log('passed!')
+    alert('passed')
   } catch(e) {
     console.log('the promise', e)
   }

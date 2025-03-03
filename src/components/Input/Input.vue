@@ -91,10 +91,11 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, useAttrs, watch, type Ref } from "vue";
+import { computed, inject, ref, useAttrs, watch, type Ref } from "vue";
 import { type InputEmits, type InputProps } from "./types";
 import Icon from "../Icon/Icon.vue";
 import { nextTick } from "vue";
+import { formItemContextKey } from "../Form/types";
 defineOptions({
   name: "VkInput",
   inheritAttrs: false,
@@ -110,6 +111,14 @@ const innerValue = ref(props.modelValue);
 const isFocus = ref(false);
 const passwordVisible = ref(false);
 const inputRef = ref() as Ref<HTMLInputElement>;
+  // 为form表单验证提供
+const formItemContext = inject(formItemContextKey, null);
+
+// 运行form组件验证
+const runValidation = (trigger?: string) => {
+  // formItemContext?.validate?.(trigger);
+  formItemContext?.validate?.(trigger).catch((e) => console.log(e.errors));
+}
 //首先触发了blur，因为icon在input外部，用mousedown.prevent
   const NOOP = () => {};
 const keepFocus = async () => {
@@ -119,9 +128,11 @@ const keepFocus = async () => {
 const handleInput = () => {
   emits("update:modelValue", innerValue.value);
   emits("input", innerValue.value);
+   runValidation('input');
 };
 const handleChange = () => {
   emits("change", innerValue.value);
+   runValidation('change');
 };
 const showClear = computed(
   () => props.clearable && !props.disabled && !!innerValue.value && isFocus.value
@@ -136,6 +147,7 @@ const handleFocus = (event: FocusEvent) => {
 const handleBlur = (event: FocusEvent) => {
   isFocus.value = false;
   emits("blur", event);
+   runValidation('blur');
 };
 const clear = () => {
   innerValue.value = "";

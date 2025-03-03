@@ -1,12 +1,13 @@
 <template>
-  <vk-button plain @click="open1">Success</vk-button>
-  <vk-button plain @click="open2">Warning</vk-button>
-  <vk-button plain @click="open3">Info</vk-button>
-  <vk-button plain @click="open4">Error</vk-button>
+  <Button plain @click="open1">Success</Button>
+  <Button plain @click="open2">Warning</Button>
+  <Button plain @click="open3">Info</Button>
+  <Button plain @click="open4">Error</Button>
 </template>
 
 <script lang="ts" setup>
 import { createNotification } from '@/components/Notification';
+import Button from '@/components/Button/Button.vue'
 
 const open1 = () => {
   createNotification({

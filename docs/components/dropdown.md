@@ -15,7 +15,7 @@ description: Dropdown 组件文档
 
 ## 触发方式
 
-将 `trigger` 属性设置为 `clic`k`即可， 默认为`hover`。
+将 `trigger` 属性设置为 `click`即可， 默认为`hover`。
 
 <preview path="../demo/Dropdown/Trigger.vue" title="触发方式" description="Dropdown 组件的触发方式"></preview>
 
