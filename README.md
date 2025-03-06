@@ -1,5 +1,5 @@
 # vk-element
-
+说明文档：https://patrick514.github.io/vk-element/
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
