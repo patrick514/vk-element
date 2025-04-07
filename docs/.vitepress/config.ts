@@ -40,6 +40,7 @@ export default defineConfig({
           { text: "Select 选择器", link: "/components/select" },
           { text: "Switch 开关", link: "/components/switch" },
           { text: "Form 表单", link: "/components/form" },
+          { text: "Rate 评分", link: "/components/rate" },
         ],
       },
       {
@@ -57,6 +58,7 @@ export default defineConfig({
           { text: "Message 消息提示", link: "/components/message" },
           { text: "Notification 通知", link: "/components/notification" },
           { text: "Tooltip 文字提示", link: "/components/tooltip" },
+          { text: "Dialog 对话框", link: "/components/dialog" },
         ],
       },
     ],

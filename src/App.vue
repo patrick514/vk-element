@@ -12,6 +12,7 @@ import type { TooltipInstance } from "./components/Tooltip/types";
 import Dropdown from "./components/Dropdown/Dropdown.vue";
 import { MenuOptions } from "./components/Dropdown/types";
 import Message from "./components/Message/Message.vue";
+import Rate from "./components/Rate/Rate.vue";
 import { createMessage } from "./components/Message/method";
 import Input from "./components/Input/Input.vue";
 const overlayNode = ref<HTMLElement>();
@@ -99,6 +100,8 @@ onMounted(() => {
 
     <Button ref="buttonRef" @click="open">Test Button</Button>
     <Button plain @click="close">Plain Button</Button>
+    <Rate ></Rate>
+
     <!-- <Button round>Round Button</Button>
     <Button circle>VK</Button>
     <Button disabled>Disabled Button</Button><br /><br />
