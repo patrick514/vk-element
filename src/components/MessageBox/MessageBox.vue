@@ -20,7 +20,7 @@
 </template>
 <script setup lang="ts">
 
-import { ref, reactive } from "vue";
+import { reactive } from "vue";
 import { type ActionType, type MessageBoxOptions } from "./types";
 import Button from "../Button/Button.vue";
 defineOptions({
